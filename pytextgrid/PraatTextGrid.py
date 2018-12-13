@@ -10,7 +10,7 @@
 # import re
 #import exceptions
 import codecs
-from py_ptg.get_named_value import *
+from .get_named_value import *
 
 class Point:
     def __init__(self, fd=None, time=None, mark=''):
