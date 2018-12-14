@@ -325,7 +325,7 @@ class PraatTextGrid:
 
     def __contains__(self, item):
         for t in self._tiers:
-            if t._name == key:
+            if t._name == item:
                 return True
         return False
     
