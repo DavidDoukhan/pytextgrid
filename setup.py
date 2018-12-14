@@ -50,11 +50,11 @@ CLASSIFIERS=[
 ]
 
 DESCRIPTION='A toolbox for manipulating praat textgrid in python: creation, modification, analysis'
-#LONGDESCRIPTION=
+LONGDESCRIPTION=DESCRIPTION
 
 setup(
     name = "pytextgrid",
-    version = "0.1",
+    version = "0.1.2",
     author = "David Doukhan",
     author_email = "david.doukhan@gmail.com",
     description = DESCRIPTION,
@@ -68,8 +68,8 @@ setup(
     #package_data = {'inaSpeechSegmenter': ['*.hdf5']},
     #include_package_data = True,
     data_files = ['LICENSE'],
-#    long_description=LONGDESCRIPTION,
-#    long_description_content_type='text/markdown',
+    long_description=LONGDESCRIPTION,
+    long_description_content_type='text/markdown',
     #scripts=[os.path.join('scripts', script) for script in \
     #         ['ina_speech_segmenter.py']],
     classifiers=CLASSIFIERS,

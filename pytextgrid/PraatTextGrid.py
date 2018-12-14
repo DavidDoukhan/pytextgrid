@@ -323,6 +323,12 @@ class PraatTextGrid:
         print('key ', key, 'not available in TextGrid')
         raise exception.KeyError
 
+    def __contains__(self, item):
+        for t in self._tiers:
+            if t._name == key:
+                return True
+        return False
+    
     def __iter__(self):
         return self._tiers.__iter__()
 
