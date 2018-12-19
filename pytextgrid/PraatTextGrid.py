@@ -60,7 +60,10 @@ class Interval:
         assert(re.match(r'\s*intervals\s*\[\d+\]:?\s*', fdline))
         xmin = getfloatval(fd.readline(), "xmin")
         xmax = getfloatval(fd.readline(), "xmax")
-        text = getstringval(fd.readline(), "text")
+        try:
+            text = getstringval(fd.readline(), "text")
+        except Exception as inst:
+            raise Exception('Problem in text in interval <%f-%f>' % (xmin, xmax))
         return Interval(xmin, xmax, text)
 
     def length(self):
@@ -338,7 +341,10 @@ class PraatTextGrid:
     def copy(self):
         raise NotImplementedError
 
-
+#    def crop(self, xmin=None, xmax=None):
+#        for t in self._tiers:
+#            
+    
             
 if __name__ == "__main__":
     import sys
