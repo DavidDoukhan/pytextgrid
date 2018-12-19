@@ -54,7 +54,7 @@ LONGDESCRIPTION=DESCRIPTION
 
 setup(
     name = "pytextgrid",
-    version = "0.1.3",
+    version = "0.1.4",
     author = "David Doukhan",
     author_email = "david.doukhan@gmail.com",
     description = DESCRIPTION,

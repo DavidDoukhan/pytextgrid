@@ -11,6 +11,7 @@
 #import exceptions
 import codecs
 from .get_named_value import *
+from numpy import inf
 
 class Point:
     def __init__(self, fd=None, time=None, mark=''):
@@ -223,6 +224,18 @@ class Tier:
     def __len__(self):
         return len(self._intervals)
 
+    def crop(self, xmin, xmax):
+        intervals = []
+        for intv in self._intervals:
+            if xmin >= intv._xmax or xmax <= intv._xmin:
+                continue
+            lbound = max(0, intv._xmin - xmin)
+            rbound = min(xmax, intv._xmax) - xmin
+            intervals.append(Interval(lbound, rbound, intv._text))
+            
+        self._intervals = intervals
+        self._xmin = intervals[0]._xmin
+        self._xmax = intervals[-1]._xmax
 
 # class IntervalTier(Tier):
 #     pass
@@ -341,11 +354,16 @@ class PraatTextGrid:
     def copy(self):
         raise NotImplementedError
 
-#    def crop(self, xmin=None, xmax=None):
-#        for t in self._tiers:
-#            
-    
-            
+    def crop(self, xmin=0, xmax=inf):
+        newxmin = inf
+        newxmax = -inf
+        for t in self._tiers:
+            t.crop(xmin, xmax)
+            newxmin = min(t._xmin, newxmin)
+            newxmax = max(t._xmax, newxmax)
+        self._xmin = newxmin
+        self._xmax = newxmax
+
 if __name__ == "__main__":
     import sys
 
