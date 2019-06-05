@@ -350,6 +350,8 @@ class PraatTextGrid:
 
     def append(self, tier):
         self._tiers.append(tier)
+        if tier._xmax > self._xmax:
+            self._xmax = tier._xmax
 
     def copy(self):
         raise NotImplementedError
